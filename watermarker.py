@@ -1,7 +1,6 @@
 import sys
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
-
 pdf_name = sys.argv[1]
 watermark_name = sys.argv[2]
 
@@ -11,7 +10,14 @@ def open_pdf(file_name):
         pdf = PdfFileReader(open(file_name, mode='rb'))
         return pdf
     except FileNotFoundError as e:
-        print("Check the argument names.", e)
+        print("Check the argument names:", e)
+        sys.exit(1)
+
+
+def write_pdf(output):
+    with open("watermarked.pdf", mode='wb') as file:
+        output.write(file)
+        print("Done.")
 
 
 def make_watermark(pdf, watermark):
@@ -31,17 +37,6 @@ def make_watermark(pdf, watermark):
         print("Check the argv names.")
 
 
-def write_wtrpdf(output):
-    try:
-        with open("watermarked.pdf", 'wb') as file:
-            output.write(file)
-            print("Done.")
-    except AttributeError as err:
-        print("Check the argv names.", err)
-
-
 if __name__ == "__main__":
     out = make_watermark(pdf_name, watermark_name)
-    write_wtrpdf(out)
-
-
+    write_pdf(out)
