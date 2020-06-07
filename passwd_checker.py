@@ -1,9 +1,11 @@
-import sys
+import getpass
 import requests
 import hashlib
 
 # TO DO:
-# add nice command line interface -> https://www.sicara.ai/blog/2018-12-18-perfect-command-line-interfaces-python
+# add nice command line interface ->
+# https://www.sicara.ai/blog/2018-12-18-perfect-command-line-interfaces-python
+
 
 def request_api_data(query_char):
     url = 'https://api.pwnedpasswords.com/range/' + query_char
@@ -31,15 +33,15 @@ def pwnd_api_check(password):
 
 def main(args):
     if args:
-        for password in args:
-            count = pwnd_api_check(password)
-            if count:
-                print(f"Your password leaked {count} time(s). Don't use this password!")
-            else:
-                print(f"{password} was not found. You may still use it.")
+        count = pwnd_api_check(password)
+        if count:
+            print(f"Your password leaked {count} time(s). Don't use this password!")
+        else:
+            print(f"Your password hasn't leaked yet. You may still use it.")
     else:
         print("No password given.")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    password = getpass.getpass("Password to check: ")
+    main(password)
