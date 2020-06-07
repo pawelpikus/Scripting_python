@@ -34,7 +34,7 @@ def main(args):
         for password in args:
             count = pwnd_api_check(password)
             if count:
-                print(f"{password} was found {count} time(s). Don't use this password!")
+                print(f"Your password leaked {count} time(s). Don't use this password!")
             else:
                 print(f"{password} was not found. You may still use it.")
     else:

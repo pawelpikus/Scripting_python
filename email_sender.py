@@ -13,8 +13,10 @@ email['subject'] = 'You won 10000 rubles!'
 email.set_content(html.substitute({'name': 'Paweł'}), 'html')
 
 with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
+    login = 'xxx'
+    passwd = 'xxx'
     smtp.ehlo()
     smtp.starttls()
-    smtp.login('dev.tester1982@gmail.com', 'Devtest12!@')
+    smtp.login(login, passwd)
     smtp.send_message(email)
     print('Done!')

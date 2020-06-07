@@ -11,11 +11,11 @@ def open_pdf(file_name):
         return pdf
     except FileNotFoundError as e:
         print("Check the argument names:", e)
-        sys.exit(1)
+        sys.exit()
 
 
 def write_pdf(output):
-    with open("watermarked.pdf", mode='wb') as file:
+    with open("PDFS/watermarked.pdf", mode='wb') as file:
         output.write(file)
         print("Done.")
 
